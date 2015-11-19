@@ -103,19 +103,13 @@ void Reconstruction::linearFit(std::vector<Float_t> const & xi, std::vector<Floa
 	Float_t da2 = S/(S - 2) * dy2/D;
 	Float_t db2 = da2 * S_xx/S;
 
-	//~ std::cout << "  ------------------ " << std::endl;	
-	//~ std::cout << "       LS Fit    " << std::endl;
-	//~ std::cout << "    b    = " << b << " \t +/- " << TMath::Sqrt(db2) << std::endl;
-	//~ std::cout << "    a    = " << a << " \t +/- " << TMath::Sqrt(da2) << std::endl;
-	//~ std::cout << "    chi2 = " << dy2 / m_pixelError / m_pixelError  << std::endl;
-	//~ std::cout << "  ------------------ " << std::endl;
 	
 	
-	//~ m_chi       = dy2; // / m_pixelError / m_pixelError; 
-	//~ m_slope     = a; 
-	//~ m_slopeErr  = TMath::Sqrt(da2); 
-	//~ m_offset    = b; 
-	//~ m_offsetErr = TMath::Sqrt(db2); 
+	m_chi       = dy2 / m_pixelError / m_pixelError; 
+	m_slope     = a; 
+	m_slopeErr  = TMath::Sqrt(da2); 
+	m_offset    = b; 
+	m_offsetErr = TMath::Sqrt(db2); 
 	
 }
 		
