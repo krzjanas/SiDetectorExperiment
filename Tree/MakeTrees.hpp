@@ -6,9 +6,9 @@
 #include <TFile.h>
 #include <TTree.h>
 
-#include "ParticleSource.hpp"
-#include "SensorRes.hpp"
-#include "Reconstruction.hpp"
+#include "../Headers/ParticleSource.hpp"
+#include "../Headers/SensorRes.hpp"
+#include "../Headers/Reconstruction.hpp"
 
 class MakeTrees{
 	

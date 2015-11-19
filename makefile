@@ -39,10 +39,10 @@ Obj/TreeTracks.o: Tree/Trees/TreeTracks.cpp Tree/Trees/TreeTracks.hpp
 Obj/TreeSensor.o: Tree/Trees/TreeSensor.cpp Tree/Trees/TreeSensor.hpp
 	g++ -c -o Obj/TreeSensor.o Tree/Trees/TreeSensor.cpp $(CXXLAGS)
 	
-.PHONY: clean run
+.PHONY: clean experiment all
 
 clean:
 	rm -f Experiment Obj/*.o *.root Vis/*.png
 	
-run:
+experiment:
 	./Experiment
