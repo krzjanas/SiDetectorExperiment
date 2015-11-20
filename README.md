@@ -16,3 +16,5 @@ Opcje make:
 
 Uwaga:
 - Po pobraniu kodu z github jest mozliwe, ze do uruchomienia programow trzeba stworzyc katalogi Vis i Obj. 
+
+- Opcje mozna ustawiac w pliku ConfigureSiDet.hpp w katalogu glownym
