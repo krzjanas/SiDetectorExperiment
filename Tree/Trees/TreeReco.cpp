@@ -3,20 +3,14 @@
 #include <TStyle.h>
 #include <TCanvas.h>
 
-
-TreeReco::TreeReco(TTree *tree) : fChain(0) 
+TreeReco::TreeReco(TString const & fileName, TString const & treeName) : fChain(0) 
 {
-// if parameter tree is not specified (or zero), connect the file
-// used to generate this class and read the Tree.
-   if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("ResultsTrees.root");
-      if (!f || !f->IsOpen()) {
-         f = new TFile("ResultsTrees.root");
-      }
-      f->GetObject("Reco",tree);
+   if( fileName == "" ) return;
 
-   }
-   Init(tree);
+   fChain = new TChain(treeName);
+   fChain->Add(fileName);
+
+   Init();
 }
 
 TreeReco::~TreeReco()
@@ -44,7 +38,7 @@ Long64_t TreeReco::LoadTree(Long64_t entry)
    return centry;
 }
 
-void TreeReco::Init(TTree *tree)
+void TreeReco::Init()
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -55,8 +49,7 @@ void TreeReco::Init(TTree *tree)
    // (once per file to be processed).
 
    // Set branch addresses and branch pointers
-   if (!tree) return;
-   fChain = tree;
+
    fCurrent = -1;
    fChain->SetMakeClass(1);
 

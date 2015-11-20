@@ -17,14 +17,16 @@ class ReadTrees {
 		TreeReco reco;
 		std::vector<TreeSensor> sensors;
 		
+		
 	private:
 		Int_t sensorsNumber;	
+		Long64_t entries;
 		
 	public:		
 		ReadTrees(TString const & fileName, Int_t f_sensorsNumber);
 
 		Int_t GetEntry(Long64_t entry);
-
+		Long64_t GetEntries() const { return entries; };
 };
 
 #endif
