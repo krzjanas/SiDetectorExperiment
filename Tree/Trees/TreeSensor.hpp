@@ -28,6 +28,7 @@ public :
    Float_t         measured;
    Bool_t          isReco;
    Float_t         recoVal;
+   Float_t         recoErr;
 
    // List of branches
    TBranch        *b_real;   //!
@@ -36,6 +37,7 @@ public :
    TBranch        *b_measured;   //!
    TBranch        *b_isReco;   //!
    TBranch        *b_recoVal;   //!
+   TBranch        *b_recoErr;   //!
 
    TreeSensor(TString const & fileName = "", TString const & treeName = "");
    virtual ~TreeSensor();

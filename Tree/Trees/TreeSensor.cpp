@@ -60,6 +60,7 @@ void TreeSensor::Init()
    fChain->SetBranchAddress("measured", &measured, &b_measured);
    fChain->SetBranchAddress("isReco", &isReco, &b_isReco);
    fChain->SetBranchAddress("recoVal", &recoVal, &b_recoVal);
+   fChain->SetBranchAddress("recoErr", &recoErr, &b_recoErr);
    Notify();
 }
 

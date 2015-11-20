@@ -1,29 +1,25 @@
 #include "ReadTrees.hpp"
+#include <iostream>
 
 ReadTrees::ReadTrees(TString const & fileName, Int_t f_sensorsNumber) : sensorsNumber(f_sensorsNumber) {
-		
-	tracks = TreeTracks(fileName,"Tracks");
-	reco = TreeReco(fileName,"Reco");
-	
-	entries = tracks.fChain->GetEntries();
 
-	sensors = std::vector<TreeSensor>();
+	tracks =new TreeTracks(fileName,"Tracks");
+	reco = new TreeReco(fileName,"Reco");
+	entries = tracks->fChain->GetEntries();
+
+	sensors = std::vector<TreeSensor *>();
 	for(Int_t i = 0; i<sensorsNumber; i++){
 		TString senName = "Sensor_";
 		senName += i;
-		sensors.push_back(TreeSensor(fileName,senName));
-	}
+		sensors.push_back(new TreeSensor(fileName,senName));
+	} 
 	 
 }
 
-Int_t ReadTrees::GetEntry(Long64_t entry){
-	Int_t a, b;
-	a = tracks.GetEntry(entry);
-	b = reco.GetEntry(entry);
-	if( b < a ) a = b;
+void ReadTrees::GetEntry(Long64_t entry){
+	tracks->GetEntry(entry);
+	reco->GetEntry(entry);
 	for(Int_t i = 0; i<sensorsNumber; i++){
-		b = sensors[i].GetEntry(entry);
-		if( b < a ) a = b;
+		sensors[i]->GetEntry(entry);
 	}
-	return b;
 }

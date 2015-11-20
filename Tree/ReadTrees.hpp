@@ -13,9 +13,9 @@
 
 class ReadTrees {
 	public:
-		TreeTracks tracks;	
-		TreeReco reco;
-		std::vector<TreeSensor> sensors;
+		TreeTracks * tracks;	
+		TreeReco * reco;
+		std::vector<TreeSensor *> sensors;
 		
 		
 	private:
@@ -25,7 +25,7 @@ class ReadTrees {
 	public:		
 		ReadTrees(TString const & fileName, Int_t f_sensorsNumber);
 
-		Int_t GetEntry(Long64_t entry);
+		void GetEntry(Long64_t entry);
 		Long64_t GetEntries() const { return entries; };
 };
 

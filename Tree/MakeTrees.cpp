@@ -37,6 +37,7 @@ MakeTrees::MakeTrees(TString const & outputFile, Int_t const f_layersNumber) : m
 			branch = sensorsTree.back()->Branch("measured", &v_S_measured, "measured/F" );	 branch->SetAutoDelete(kFALSE);
 			branch = sensorsTree.back()->Branch("isReco",   &v_S_isReco,   "isReco/O" );	 branch->SetAutoDelete(kFALSE);
 			branch = sensorsTree.back()->Branch("recoVal",  &v_S_recoVal,  "recoVal/F" );	 branch->SetAutoDelete(kFALSE);
+			branch = sensorsTree.back()->Branch("recoErr",  &v_S_recoErr,  "recoErr/F" );	 branch->SetAutoDelete(kFALSE);
 	}
 }
 
@@ -93,6 +94,7 @@ void MakeTrees::Fill(ParticleSource const & source, Reconstruction const & recon
 		v_S_measured = eventResults[i].GetMeasured();			
 		v_S_isReco   = eventResults[i].GetIsReco();		
 		v_S_recoVal  = eventResults[i].GetRecoVal();	
+		v_S_recoErr  = eventResults[i].GetRecoErr();	
 		sensorsTree[i]->Fill();	
 	}
 }

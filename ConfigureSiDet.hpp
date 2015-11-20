@@ -13,8 +13,8 @@ class ConfigureSiDet{
 	Float_t const parX2 = -2.0; 
 	Float_t const parY1 =  2.0; 
 	Float_t const parY2 = -2.0; 
-	Float_t const parT1 =  TMath::Pi()*0.99;
-	Float_t const parT2 = -TMath::Pi()*0.99;
+	Float_t const parT1 =  TMath::Pi()*0.60;
+	Float_t const parT2 = -TMath::Pi()*0.60;
 	          
 	// Detector parameters:
 	Int_t   const layersNumber    = 5; 	// Number of layers (sensors) in detector
@@ -24,7 +24,7 @@ class ConfigureSiDet{
 	Char_t  const blurryOpt       = 'G';	// Distributions for hit blurring ( "G"aus / "U"nniform )
 	Float_t const blurryPar       = 0.25; 	// Parameter of above distribution
 	Float_t const pixelSize       = 0.25; 	// Pixel size
-	Float_t const pixelEfficiency = 2.0;	// Pixel efficiency
+	Float_t const pixelEfficiency = 1.0;	// Pixel efficiency
 	
 	// Loop parameters
 	Int_t   const maxEvents    = 100000;

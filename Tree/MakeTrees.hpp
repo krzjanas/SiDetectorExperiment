@@ -42,6 +42,7 @@ class MakeTrees{
 			Float_t v_S_measured;			
 			Bool_t  v_S_isReco;		
 			Float_t v_S_recoVal;		
+			Float_t v_S_recoErr;		
 	
 	public:
 		

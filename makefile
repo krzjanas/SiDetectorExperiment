@@ -3,8 +3,9 @@ LFLAGS=`root-config --glibs`
 
 OBJExp=Obj/Experiment.o Obj/ParticleSource.o Obj/SensorRes.o Obj/SiDetector.o Obj/Reconstruction.o Obj/MakeTrees.o 
 OBJVis=Obj/Visualisation.o Obj/ReadTrees.o Obj/TreeTracks.o Obj/TreeReco.o Obj/TreeSensor.o Obj/VisEvent.o
+OBJPlo=Obj/Plots.o Obj/ReadTrees.o Obj/TreeTracks.o Obj/TreeReco.o Obj/TreeSensor.o
 
-all: Experiment Visualisation
+all: Experiment Visualisation Plots
 
 Experiment: $(OBJExp) 
 	g++ -o Experiment $(OBJExp) $(LFLAGS)
@@ -12,11 +13,17 @@ Experiment: $(OBJExp)
 Visualisation: $(OBJVis) 
 	g++ -o Visualisation $(OBJVis) $(LFLAGS)
 
-Obj/Experiment.o: Main/Experiment.cpp 
+Plots: $(OBJPlo) 
+	g++ -o Plots $(OBJPlo) $(LFLAGS)
+
+Obj/Experiment.o: Main/Experiment.cpp ConfigureSiDet.hpp
 	g++ -c -o Obj/Experiment.o Main/Experiment.cpp $(CXXLAGS)
 	
-Obj/Visualisation.o: Main/Visualisation.cpp 
+Obj/Visualisation.o: Main/Visualisation.cpp ConfigureSiDet.hpp
 	g++ -c -o Obj/Visualisation.o Main/Visualisation.cpp $(CXXLAGS)
+	
+Obj/Plots.o: Main/Plots.cpp ConfigureSiDet.hpp
+	g++ -c -o Obj/Plots.o Main/Plots.cpp $(CXXLAGS)
 	
 Obj/ParticleSource.o: Source/ParticleSource.cpp Headers/ParticleSource.hpp
 	g++ -c -o Obj/ParticleSource.o Source/ParticleSource.cpp $(CXXLAGS)
@@ -48,7 +55,7 @@ Obj/TreeTracks.o: Tree/Trees/TreeTracks.cpp Tree/Trees/TreeTracks.hpp
 Obj/TreeSensor.o: Tree/Trees/TreeSensor.cpp Tree/Trees/TreeSensor.hpp
 	g++ -c -o Obj/TreeSensor.o Tree/Trees/TreeSensor.cpp $(CXXLAGS)
 	
-.PHONY: clean experiment visualisation all
+.PHONY: clean experiment visualisation plots all
 
 clean:
 	rm -f Experiment Obj/*.o Tree/*.root Vis/*.png Vis/*.root
@@ -58,3 +65,6 @@ experiment:
 	
 visualisation:
 	./Visualisation
+	
+plots:
+	./Plots

@@ -44,7 +44,7 @@ void Reconstruction::doReconstruction( std::vector<SensorRes> & results){
 			}
 		}
 		
-		linearFit(xxx,yyy);
+		//~ linearFit(xxx,yyy);
 					
 		TF1 * fit = new TF1("fit","pol1",0.0,m_firstLayer + m_layersNumber * m_deltaLayer);
 		graph->Fit("fit","WQ");		
@@ -57,7 +57,10 @@ void Reconstruction::doReconstruction( std::vector<SensorRes> & results){
 		m_offsetErr = fit->GetParError(0); 
 
 		for(UInt_t i = 0; i < results.size(); i++){
-			if( results[i].GetObserved() ) results[i].SetReco( m_slope * ( m_firstLayer + i*m_deltaLayer ) + m_offset );
+			if( results[i].GetObserved() ){
+				results[i].SetReco( m_slope * ( m_firstLayer + i*m_deltaLayer ) + m_offset,
+					TMath::Hypot( m_slopeErr * ( m_firstLayer + i*m_deltaLayer ), m_offsetErr ));
+			}
 		}
 				
 		delete fit;

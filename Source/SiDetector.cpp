@@ -8,8 +8,8 @@ SiDetector::SiDetector(Int_t const f_layersNumber, Float_t const f_firstLayer, F
 	  
 {
 	for( Int_t i = 0; i<m_layersNumber; i++){
-		randomsForBlurry.push_back   ( new TRandom3() );
-		randomsForObserved.push_back ( new TRandom3() );
+		randomsForBlurry.push_back   ( new TRandom3(0) );
+		randomsForObserved.push_back ( new TRandom3(0) );
 	}
 }
 
@@ -53,7 +53,11 @@ std::vector<SensorRes> SiDetector::getResults(ParticleSource const & particle) c
 		// Where is measured?						
 		if( observed ){
 			Int_t pixelNum = blurry / m_pixelSize;
-			measured = ( 0.5 + pixelNum ) * m_pixelSize;
+			if( blurry > 0 ){
+				measured = ( 0.5 + pixelNum ) * m_pixelSize;
+			} else {
+				measured = ( -0.5 + pixelNum ) * m_pixelSize;
+			}
 		} else {
 			measured = 9999.0;
 		}
