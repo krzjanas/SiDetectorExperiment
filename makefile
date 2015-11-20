@@ -58,7 +58,7 @@ Obj/TreeSensor.o: Tree/Trees/TreeSensor.cpp Tree/Trees/TreeSensor.hpp
 .PHONY: clean experiment visualisation plots all
 
 clean:
-	rm -f Experiment Obj/*.o Tree/*.root Vis/*.png Vis/*.root
+	rm -f Experiment Visualisation Plots Obj/*.o Tree/*.root Vis/*.png Vis/*.root
 	
 experiment:
 	./Experiment
